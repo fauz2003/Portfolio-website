@@ -1,11 +1,93 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero';
+import About from '../components/About';
+import Capabilities from '../components/Capabilities';
+import TechStack from '../components/TechStack';
+import Projects from '../components/Projects';
+import Services from '../components/Services';
+import ContactForm from '../components/ContactForm';
+import Footer from '../components/Footer';
 ---
 
 <Layout>
-	<Welcome />
+	<!-- Hero Section - Load immediately for first paint -->
+	<Hero client:load />
+
+	<!-- About Section - Visible on scroll -->
+	<About client:visible />
+
+	<!-- Capabilities Section -->
+	<Capabilities client:visible />
+
+	<!-- Technology Stack - Animated strip -->
+	<TechStack client:visible />
+
+	<!-- Projects Section -->
+	<Projects client:visible />
+
+	<!-- Services Section -->
+	<Services client:visible />
+
+	<!-- Contact Form - Load when visible -->
+	<ContactForm client:visible />
+
+	<!-- Footer - Can be static or load on visible -->
+	<Footer client:visible />
 </Layout>
+
+<!-- 
+PORTFOLIO CUSTOMIZATION GUIDE:
+
+1. HERO SECTION (src/components/Hero.tsx):
+   - Update "Your Name" with your actual name
+   - Customize the headline and value proposition
+   - Add your profile photo to public/ folder and update the image src
+
+2. ABOUT SECTION (src/components/About.tsx):
+   - Already written in first person with client-friendly language
+   - Edit the paragraphs to reflect your personal approach and experience
+
+3. CAPABILITIES (src/components/Capabilities.tsx):
+   - capabilities array contains outcome-focused items
+   - Add/remove/edit capabilities to match your offerings
+
+4. TECH STACK (src/components/TechStack.tsx):
+   - Update the technologies array with your actual tech stack
+   - Replace placeholder logos with actual SVG/PNG images
+   - Logos should be added to public/logos/ folder
+
+5. PROJECTS (src/components/Projects.tsx):
+   - Update the projects array with your real projects
+   - Add project images to public/ folder
+   - Include outcomes and business impact in descriptions
+
+6. SERVICES (src/components/Services.tsx):
+   - Customize the services array to match what you offer
+   - Update deliverables for each service
+
+7. CONTACT FORM (src/components/ContactForm.tsx):
+   - Get a free Formspree endpoint: https://formspree.io/
+   - Replace 'YOUR_FORM_ID' with your actual endpoint ID
+
+8. FOOTER (src/components/Footer.tsx):
+   - Update socialLinks array with your actual URLs
+   - Replace GitHub, LinkedIn, and email with your info
+
+9. SEO & META TAGS (src/layouts/Layout.astro):
+   - Update default title and description
+   - Add Open Graph image for social media sharing
+
+10. FAVICON:
+    - Replace public/favicon.svg and public/favicon.ico with your branding
+
+PERFORMANCE NOTES:
+- Hero uses client:load for immediate interactivity
+- All other sections use client:visible for optimal performance
+- This ensures fast initial load while maintaining smooth animations
+
+DEPLOYMENT:
+- Run: pnpm build
+- Deploy the dist/ folder to any static host
+- Recommended: Vercel, Netlify, or GitHub Pages
+-->
