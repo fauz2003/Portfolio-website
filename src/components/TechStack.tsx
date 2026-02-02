@@ -1,102 +1,64 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useInView } from 'framer-motion';
+import { useRef, useState } from 'react';
 
-// Technology logos/names - Update with actual logo images
 const technologies = [
-  { name: 'React', category: 'frontend' },
-  { name: 'TypeScript', category: 'language' },
-  { name: 'Node.js', category: 'backend' },
-  { name: 'Python', category: 'language' },
-  { name: 'PostgreSQL', category: 'database' },
-  { name: 'MongoDB', category: 'database' },
-  { name: 'AWS', category: 'cloud' },
-  { name: 'Docker', category: 'devops' },
-  { name: 'Next.js', category: 'frontend' },
-  { name: 'Vue.js', category: 'frontend' },
-  { name: 'GraphQL', category: 'backend' },
-  { name: 'Redis', category: 'database' },
-  { name: 'Tailwind CSS', category: 'frontend' },
-  { name: 'Express', category: 'backend' },
-  { name: 'Firebase', category: 'cloud' },
-  { name: 'Vercel', category: 'cloud' },
+  'React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'MongoDB',
+  'AWS', 'Docker', 'Next.js', 'GraphQL', 'Redis', 'Firebase',
 ];
 
 export default function TechStack() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplicate the array for seamless infinite scroll
-  const duplicatedTechs = [...technologies, ...technologies];
+  const duplicated = [...technologies, ...technologies];
 
   return (
-    <section className="py-24 px-6 bg-dark-800/30 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-24 px-6 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          ref={ref}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Technology <span className="text-accent-primary">Experience</span>
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Tools and platforms I work with
+          <p className="text-gray-600 text-sm text-center mb-12">
+            Technologies I work with
           </p>
-        </motion.div>
 
-        {/* Infinite scroll container */}
-        <div className="relative">
-          {/* Gradient overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-dark-900 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 z-10" style={{ background: 'linear-gradient(to left, var(--color-dark-900), transparent)' }}></div>
-
-          {/* Scrolling track */}
           <div
-            className="flex gap-8 py-8"
+            className="relative"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-dark-900 to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-dark-900 to-transparent z-10 pointer-events-none" />
+
             <motion.div
-              className="flex gap-8 shrink-0"
-              animate={{
-                x: isPaused ? 0 : [0, -1920], // Adjust based on content width
-              }}
+              className="flex gap-12"
+              animate={{ x: isPaused ? 0 : [0, -1200] }}
               transition={{
                 x: {
-                  duration: 30,
+                  duration: 25,
                   repeat: Infinity,
                   ease: "linear",
+                  repeatType: "loop",
                 },
               }}
             >
-              {duplicatedTechs.map((tech, index) => (
-                <motion.div
-                  key={`${tech.name}-${index}`}
-                  whileHover={{ scale: 1.1 }}
-                  className="shrink-0 bg-dark-700 border border-accent-primary/20 rounded-xl px-8 py-6 min-w-45 
-                           hover:border-accent-primary/50 hover:shadow-glow-sm transition-all duration-300"
+              {duplicated.map((tech, index) => (
+                <div
+                  key={`${tech}-${index}`}
+                  className="text-gray-500 text-lg font-light whitespace-nowrap hover:text-white transition-colors duration-300"
                 >
-                  {/* Replace with actual logo images */}
-                  <div className="text-center">
-                    <div className="text-4xl mb-3">
-                      {/* Placeholder - replace with actual SVG/PNG logos */}
-                      <div className="w-12 h-12 mx-auto bg-accent-primary/20 rounded-lg flex items-center justify-center text-accent-primary font-bold text-xl">
-                        {tech.name.charAt(0)}
-                      </div>
-                    </div>
-                    <p className="text-white font-semibold text-sm">{tech.name}</p>
-                    <p className="text-gray-500 text-xs mt-1 uppercase tracking-wider">{tech.category}</p>
-                  </div>
-                </motion.div>
+                  {tech}
+                </div>
               ))}
             </motion.div>
           </div>
-        </div>
-
-        <p className="text-center text-gray-500 text-sm mt-8">
-          Hover to pause • This is a visual representation of tools and platforms I've worked with
-        </p>
+        </motion.div>
       </div>
     </section>
   );

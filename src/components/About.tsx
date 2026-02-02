@@ -7,70 +7,72 @@ export default function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 px-6 bg-dark-800/50">
+    <section id="about" className="py-32 px-6 md:px-12 lg:px-24">
       <div className="max-w-4xl mx-auto">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-            How I <span className="text-accent-primary">Work</span>
-          </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-accent-primary text-sm font-medium tracking-widest uppercase mb-8"
+          >
+            Approach
+          </motion.p>
 
-          <div className="space-y-8 text-lg text-gray-300 leading-relaxed">
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              I believe great software starts with understanding the real problem. 
-              Before writing a single line of code, I take time to understand your business, 
-              your users, and what success looks like for you.
-            </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-light text-white leading-relaxed mb-16"
+          >
+            I build software that solves real problems.{' '}
+            <span className="text-gray-500">
+              Clean architecture, pragmatic choices, delivered on time.
+            </span>
+          </motion.h2>
 
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+          <div className="grid md:grid-cols-3 gap-12 md:gap-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
             >
-              Once we're aligned, I design clean, scalable solutions that solve the immediate 
-              need while preparing for future growth. I've built everything from rapid MVPs 
-              to complex enterprise systems, and I know when to move fast and when to build 
-              for the long term.
-            </motion.p>
+              <div className="text-5xl font-light text-accent-primary mb-4">01</div>
+              <h3 className="text-white font-medium mb-3">Understand</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Deep dive into your business, users, and goals before writing any code.
+              </p>
+            </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
-              My approach is pragmatic: I choose the right tool for the job, not the trendy one. 
-              Sometimes that's custom code, sometimes it's a no-code solution that gets you to 
-              market in days instead of months. What matters is delivering something reliable 
-              that actually works for your business.
-            </motion.p>
+              <div className="text-5xl font-light text-accent-primary mb-4">02</div>
+              <h3 className="text-white font-medium mb-3">Design</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Architect solutions that scale with your growth and adapt to change.
+              </p>
+            </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
             >
-              I've worn many hats—sole engineer on complex systems, technical lead on fast-paced 
-              teams, and everything in between. I bring that breadth of experience to every project, 
-              thinking beyond just code to consider business outcomes, user experience, and long-term 
-              maintainability.
-            </motion.p>
+              <div className="text-5xl font-light text-accent-primary mb-4">03</div>
+              <h3 className="text-white font-medium mb-3">Deliver</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Ship reliable software fast, without sacrificing quality.
+              </p>
+            </motion.div>
           </div>
-
-          {/* Subtle decorative element */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="h-1 bg-linear-to-r from-accent-primary via-accent-secondary to-accent-tertiary rounded-full mt-12 max-w-xs mx-auto"
-          />
         </motion.div>
       </div>
     </section>
