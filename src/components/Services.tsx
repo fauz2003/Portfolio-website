@@ -1,82 +1,78 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionHeader from './SectionHeader';
 
 const services = [
   {
     title: 'Custom Development',
-    description: 'End-to-end software built to your specifications.',
+    description: 'End-to-end software built to your specifications, with clear milestones.',
   },
   {
     title: 'Technical Consulting',
-    description: 'Architecture reviews, tech strategy, and team guidance.',
+    description: 'Architecture reviews, tech strategy, and hands-on team guidance.',
   },
   {
     title: 'MVP Development',
-    description: 'Rapid prototyping to validate your ideas.',
+    description: 'Rapid prototyping and validation so you learn fast without burning runway.',
   },
   {
     title: 'System Integration',
-    description: 'Connect your tools and automate workflows.',
+    description: 'Connect your tools, automate workflows, and remove operational drag.',
   },
 ];
 
 export default function Services() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="services" className="py-32 px-6 md:px-12 lg:px-24 bg-dark-800/30">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="services"
+      className="relative overflow-hidden border-y border-white/[0.06] py-18 lg:py-24 px-5 sm:px-8 lg:px-12"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-accent-secondary/[0.06] via-transparent to-accent-primary/[0.05]" />
+      <div className="pointer-events-none absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-accent-primary/5 blur-[120px]" />
+
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-            <div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-accent-primary text-sm font-medium tracking-widest uppercase mb-8"
-              >
-                Services
-              </motion.p>
-
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-3xl md:text-4xl font-light text-white mb-8"
-              >
-                How I can help
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-gray-500 leading-relaxed"
-              >
-                Whether you need a complete product built from scratch or expertise to augment your team, I deliver reliable solutions that drive results.
-              </motion.p>
+          <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
+            <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
+              <SectionHeader
+                eyebrow="Services"
+                title="How I can help"
+                subtitle="Whether you need a full product or senior hands on an existing team, engagements are structured for clarity and outcomes."
+                isInView={isInView}
+              />
             </div>
 
-            <div className="space-y-12">
+            <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7 lg:gap-6">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
-                  className="group"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+                  transition={{
+                    delay: 0.1 + index * 0.07,
+                    duration: 0.55,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="surface-glass surface-glass-hover group relative overflow-hidden rounded-2xl p-8"
                 >
-                  <h3 className="text-white font-medium text-lg mb-2 group-hover:text-accent-primary transition-colors duration-300">
+                  <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full border border-white/[0.04] transition group-hover:border-accent-primary/20" />
+                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-accent-primary/80">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <h3 className="mt-5 font-display text-xl font-semibold text-white transition group-hover:text-accent-primary">
                     {service.title}
                   </h3>
-                  <p className="text-gray-500 text-sm">{service.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-500">{service.description}</p>
+                  <div className="mt-8 h-px w-12 bg-linear-to-r from-accent-primary/50 to-transparent transition group-hover:w-full" />
                 </motion.div>
               ))}
             </div>

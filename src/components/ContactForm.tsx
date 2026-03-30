@@ -3,8 +3,12 @@ import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SectionHeader from './SectionHeader';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
+const inputClass =
+  'w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 text-white placeholder-zinc-600 shadow-inner transition focus:border-accent-primary/50 focus:outline-none focus:ring-2 focus:ring-accent-primary/20';
 
 export default function ContactForm() {
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
@@ -15,7 +19,7 @@ export default function ContactForm() {
   });
 
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -44,134 +48,109 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 lg:px-24">
-      <div className="max-w-2xl mx-auto">
+    <section id="contact" className="relative py-18 lg:py-24 px-5 sm:px-8 lg:px-12">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="mx-auto max-w-3xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-accent-primary text-sm font-medium tracking-widest uppercase mb-8"
-          >
-            Contact
-          </motion.p>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-3xl md:text-4xl font-light text-white mb-6"
-          >
-            Let's talk
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-gray-500 mb-16"
-          >
-            Have a project in mind? I'd love to hear about it.
-          </motion.p>
+          <SectionHeader
+            eyebrow="Contact"
+            title="Let's talk"
+            subtitle="Share a bit about your timeline, stack, and goals — I typically reply within one business day."
+            isInView={isInView}
+          />
 
           {formStatus === 'success' ? (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-16"
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="surface-glass rounded-3xl px-10 py-16 text-center"
             >
-              <p className="text-white text-xl mb-4">Message sent.</p>
-              <p className="text-gray-500 mb-8">I'll get back to you soon.</p>
+              <p className="font-display text-2xl font-semibold text-white">Message sent.</p>
+              <p className="mt-3 text-zinc-500">I'll get back to you shortly.</p>
               <button
+                type="button"
                 onClick={() => setFormStatus('idle')}
-                className="text-accent-primary text-sm hover:underline"
+                className="mt-10 font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary transition hover:text-white"
               >
                 Send another
               </button>
             </motion.div>
           ) : (
-            <motion.form
-              onSubmit={handleSubmit}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="space-y-8"
+              transition={{ delay: 0.15, duration: 0.65 }}
+              className="surface-glass rounded-3xl p-8 sm:p-10 lg:p-12"
             >
-              <div>
-                <label htmlFor="name" className="block text-gray-400 text-sm mb-3">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-transparent border-b border-gray-800 py-3 text-white 
-                           placeholder-gray-700 focus:outline-none focus:border-accent-primary 
-                           transition-colors duration-300"
-                  placeholder="Your name"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-7">
+                <div>
+                  <label htmlFor="name" className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className={inputClass}
+                    placeholder="Jane Doe"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block text-gray-400 text-sm mb-3">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-transparent border-b border-gray-800 py-3 text-white 
-                           placeholder-gray-700 focus:outline-none focus:border-accent-primary 
-                           transition-colors duration-300"
-                  placeholder="you@example.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={inputClass}
+                    placeholder="you@company.com"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="message" className="block text-gray-400 text-sm mb-3">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="w-full bg-transparent border-b border-gray-800 py-3 text-white 
-                           placeholder-gray-700 focus:outline-none focus:border-accent-primary 
-                           transition-colors duration-300 resize-none"
-                  placeholder="Tell me about your project"
-                />
-              </div>
+                <div>
+                  <label htmlFor="message" className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className={`${inputClass} resize-none`}
+                    placeholder="Project scope, constraints, and what success looks like…"
+                  />
+                </div>
 
-              {formStatus === 'error' && (
-                <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>
-              )}
+                {formStatus === 'error' && (
+                  <p className="text-sm text-red-400/90">Something went wrong. Please try again.</p>
+                )}
 
-              <motion.button
-                type="submit"
-                disabled={formStatus === 'loading'}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="mt-8 px-8 py-4 bg-accent-primary text-white text-sm font-medium 
-                         rounded-full hover:bg-accent-secondary transition-colors duration-300
-                         disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {formStatus === 'loading' ? 'Sending...' : 'Send Message'}
-              </motion.button>
-            </motion.form>
+                <motion.button
+                  type="submit"
+                  disabled={formStatus === 'loading'}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  className="w-full rounded-full bg-linear-to-r from-accent-primary to-sky-400 py-4 text-sm font-semibold text-dark-950 shadow-glow-sm transition hover:shadow-glow-md disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {formStatus === 'loading' ? 'Sending…' : 'Send message'}
+                </motion.button>
+              </form>
+            </motion.div>
           )}
         </motion.div>
       </div>

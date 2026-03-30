@@ -3,58 +3,67 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 
 const technologies = [
-  'React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'MongoDB',
-  'AWS', 'Docker', 'Next.js', 'GraphQL', 'Redis', 'Firebase',
+  'React',
+  'TypeScript',
+  'Node.js',
+  'Python',
+  'PostgreSQL',
+  'MongoDB',
+  'AWS',
+  'Docker',
+  'Next.js',
+  'GraphQL',
+  'Redis',
+  'Firebase',
 ];
 
 export default function TechStack() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [isPaused, setIsPaused] = useState(false);
 
   const duplicated = [...technologies, ...technologies];
 
   return (
-    <section className="py-24 px-6 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative overflow-hidden border-b border-white/[0.04] py-20">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          <p className="text-gray-600 text-sm text-center mb-12">
-            Technologies I work with
+          <p className="mb-12 text-center font-mono text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">
+            Stack & tools
           </p>
 
           <div
-            className="relative"
+            className="relative py-2"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-dark-900 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-dark-900 to-transparent z-10 pointer-events-none" />
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-linear-to-r from-dark-950 to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-linear-to-l from-dark-950 to-transparent" />
 
             <motion.div
-              className="flex gap-12"
-              animate={{ x: isPaused ? 0 : [0, -1200] }}
+              className="flex gap-6"
+              animate={{ x: isPaused ? 0 : [0, -1400] }}
               transition={{
                 x: {
-                  duration: 25,
+                  duration: 45,
                   repeat: Infinity,
-                  ease: "linear",
-                  repeatType: "loop",
+                  ease: 'linear',
+                  repeatType: 'loop',
                 },
               }}
             >
               {duplicated.map((tech, index) => (
-                <div
+                <span
                   key={`${tech}-${index}`}
-                  className="text-gray-500 text-lg font-light whitespace-nowrap hover:text-white transition-colors duration-300"
+                  className="shrink-0 rounded-full border border-white/[0.06] bg-white/[0.03] px-5 py-2.5 font-mono text-sm text-zinc-400 transition hover:border-accent-primary/30 hover:text-accent-primary"
                 >
                   {tech}
-                </div>
+                </span>
               ))}
             </motion.div>
           </div>

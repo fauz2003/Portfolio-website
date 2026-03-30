@@ -2,113 +2,135 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-      {/* Background gradient glow */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-primary rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-secondary rounded-full blur-[120px]"></div>
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 pt-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 grid-pattern opacity-60" />
+        <div className="absolute left-1/2 top-1/4 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-accent-primary/20 blur-[140px] animate-shimmer" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-accent-secondary/15 blur-[120px]" />
+        <div className="absolute left-0 top-1/2 h-72 w-72 rounded-full bg-accent-tertiary/10 blur-[100px]" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Text content */}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 md:grid-cols-2 md:gap-12 lg:gap-20 px-5 sm:px-8 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-accent-primary text-sm font-mono mb-4 tracking-wider"
+            transition={{ delay: 0.15 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-accent-primary backdrop-blur-sm"
           >
-            SOFTWARE ENGINEER
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-primary/60 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-primary" />
+            </span>
+            Available for projects
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+            transition={{ delay: 0.2, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl"
           >
-            Your Name
+            <span className="text-gradient">Fauz Ahmed</span>
           </motion.h1>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-2xl md:text-3xl text-gray-300 mb-6 font-light"
-          >
-            Building reliable digital products
-          </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-lg text-gray-400 mb-8 leading-relaxed max-w-lg"
+            transition={{ delay: 0.35, duration: 0.8 }}
+            className="mt-6 font-display text-2xl font-light text-zinc-300 sm:text-3xl lg:text-[2rem] lg:leading-snug"
           >
-            Transforming complex challenges into elegant solutions that drive real business results.
+            Building reliable digital products
           </motion.p>
 
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-accent-primary text-white px-8 py-4 rounded-lg font-semibold 
-                     hover:bg-accent-secondary transition-all duration-300 shadow-glow-sm hover:shadow-glow-md"
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="mt-6 max-w-lg text-base leading-relaxed text-zinc-500 sm:text-lg"
           >
-            Let's Work Together
-          </motion.a>
+            Transforming complex challenges into elegant solutions that drive measurable business
+            outcomes — from architecture to launch.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.8 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-accent-primary to-sky-400 px-8 py-3.5 text-sm font-semibold text-dark-950 shadow-glow-md transition hover:shadow-glow-lg"
+            >
+              Start a project
+            </motion.a>
+            <motion.a
+              href="#projects"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-8 py-3.5 text-sm font-medium text-zinc-300 transition hover:border-accent-primary/40 hover:text-white"
+            >
+              View work
+            </motion.a>
+          </motion.div>
         </motion.div>
 
-        {/* Profile image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-          className="relative"
+          transition={{ delay: 0.25, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-md"
         >
-          <div className="relative w-full max-w-md mx-auto">
-            {/* Glow effect behind image */}
-            <div className="absolute inset-0 bg-linear-to-br from-accent-primary to-accent-secondary rounded-2xl blur-2xl opacity-50"></div>
-            
-            {/* Image placeholder */}
-            <div className="relative bg-dark-700 rounded-2xl overflow-hidden border border-accent-primary/20 aspect-square">
-              <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                {/* Replace with actual image: <img src="/profile.jpg" alt="Your Name" className="w-full h-full object-cover" /> */}
-                <div className="text-center">
-                  <div className="text-6xl mb-4">👤</div>
-                  <p className="text-sm">Replace with your photo</p>
-                  <p className="text-xs text-gray-600 mt-2">src/assets/profile.jpg</p>
+          <div className="absolute -inset-4 rounded-[2rem] bg-linear-to-br from-accent-primary/30 via-accent-secondary/20 to-transparent opacity-60 blur-2xl" />
+          <div className="surface-glass relative overflow-hidden rounded-3xl p-1">
+            <div className="relative aspect-square overflow-hidden rounded-[1.35rem] bg-linear-to-br from-dark-800 to-dark-950 ring-1 ring-white/10">
+              <div className="absolute inset-0 bg-linear-to-t from-dark-950/90 via-transparent to-transparent" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-5xl shadow-inner">
+                  👤
                 </div>
+                <p className="font-display text-sm font-medium text-zinc-300">Add your portrait</p>
+                <p className="mt-2 font-mono text-[11px] text-zinc-600">public/profile.png</p>
               </div>
+            </div>
+          </div>
+          <div className="mt-6 flex justify-center gap-8 text-center font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+            <div>
+              <p className="text-sm font-semibold text-white">End-to-end</p>
+              <p>Scope</p>
+            </div>
+            <div className="h-8 w-px bg-white/10" aria-hidden />
+            <div>
+              <p className="text-sm font-semibold text-accent-primary">Remote-first</p>
+              <p>Delivery</p>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.4 }}
+        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-accent-primary rounded-full flex justify-center p-2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex h-11 w-7 items-start justify-center rounded-full border border-white/15 bg-white/[0.03] p-2 backdrop-blur-sm"
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-accent-primary rounded-full"
-          ></motion.div>
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+            className="h-2 w-1 rounded-full bg-accent-primary"
+          />
         </motion.div>
       </motion.div>
     </section>
