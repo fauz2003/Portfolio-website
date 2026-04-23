@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import SectionHeader from './SectionHeader';
+import API_KEY from '../config';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -17,16 +18,15 @@ export default function ContactForm() {
     email: '',
     message: '',
   });
-  const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT;
-  const hasEndpoint = Boolean(formEndpoint);
+  const hasFormConfig = Boolean(API_KEY);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!hasEndpoint) {
+    if (!hasFormConfig) {
       setFormStatus('error');
       return;
     }
@@ -34,18 +34,27 @@ export default function ContactForm() {
     setFormStatus('loading');
 
     try {
-      const response = await fetch(formEndpoint, {
+      const form = e.currentTarget;
+      const submittedData = new FormData(form);
+
+      submittedData.append('access_key', API_KEY);
+
+      const object = Object.fromEntries(submittedData);
+      const json = JSON.stringify(object);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: json,
       });
 
       if (response.ok) {
         setFormStatus('success');
         setFormData({ name: '', email: '', message: '' });
+        form.reset();
       } else {
         setFormStatus('error');
       }
@@ -149,24 +158,24 @@ export default function ContactForm() {
 
                 {formStatus === 'error' && (
                   <p className="text-sm text-red-400/90">
-                    {hasEndpoint
+                    {hasFormConfig
                       ? 'Something went wrong. Please try again.'
-                      : 'Form is not configured. Add PUBLIC_FORMSPREE_ENDPOINT to your environment.'}
+                      : 'Form is not configured. Add VITE_EMAILJS_PUBLIC_KEY to your environment.'}
                   </p>
                 )}
 
                 <motion.button
                   type="submit"
-                  disabled={formStatus === 'loading' || !hasEndpoint}
+                  disabled={formStatus === 'loading' || !hasFormConfig}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   className="w-full rounded-full bg-linear-to-r from-accent-primary to-sky-400 py-4 text-sm font-semibold text-dark-950 shadow-glow-sm transition hover:shadow-glow-md disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {formStatus === 'loading'
                     ? 'Sending...'
-                    : hasEndpoint
+                    : hasFormConfig
                       ? 'Send message'
-                      : 'Configure form endpoint'}
+                      : 'Configure form key'}
                 </motion.button>
               </form>
             </motion.div>

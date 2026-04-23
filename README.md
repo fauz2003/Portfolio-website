@@ -69,18 +69,21 @@ A premium, client-facing portfolio website built with Astro, React, Tailwind CSS
 
 ### 7. Contact Form
 - File: src/components/ContactForm.tsx
-- Get a free endpoint from https://formspree.io/
+- The form uses Web3Forms submission (same technique as your previous portfolio)
+- Create/get your Web3Forms access key from https://web3forms.com/
 - Copy `.env.example` to `.env`
-- Set `PUBLIC_FORMSPREE_ENDPOINT` with your real Formspree endpoint
+- Set:
+   - `VITE_EMAILJS_PUBLIC_KEY`
 
 Example:
 ```bash
-PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/abcde123
+VITE_EMAILJS_PUBLIC_KEY=your_web3forms_access_key
 ```
 
 For GitHub Pages deployment (GitHub Actions build), add the same value in:
 - **Settings > Secrets and variables > Actions > Variables**
-- Name: `PUBLIC_FORMSPREE_ENDPOINT`
+- Name:
+   - `VITE_EMAILJS_PUBLIC_KEY`
 
 ### 8. Footer
 - File: src/components/Footer.tsx

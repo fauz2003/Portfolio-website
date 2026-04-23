@@ -14,6 +14,7 @@ export default defineConfig({
 	base,
 
   vite: {
+    envPrefix: ['PUBLIC_', 'VITE_'],
     plugins: [tailwindcss()]
   },
 
