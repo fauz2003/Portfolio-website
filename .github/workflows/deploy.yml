@@ -18,6 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,7 +41,7 @@ jobs:
         run: pnpm run build:pages
         env:
           GITHUB_PAGES: 'true'
-          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY || secrets.VITE_EMAILJS_PUBLIC_KEY }}
 
       - name: Disable Jekyll processing
         run: touch ./dist/.nojekyll
