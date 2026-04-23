@@ -70,7 +70,17 @@ A premium, client-facing portfolio website built with Astro, React, Tailwind CSS
 ### 7. Contact Form
 - File: src/components/ContactForm.tsx
 - Get a free endpoint from https://formspree.io/
-- Replace YOUR_FORM_ID with your actual ID
+- Copy `.env.example` to `.env`
+- Set `PUBLIC_FORMSPREE_ENDPOINT` with your real Formspree endpoint
+
+Example:
+```bash
+PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/abcde123
+```
+
+For GitHub Pages deployment (GitHub Actions build), add the same value in:
+- **Settings > Secrets and variables > Actions > Variables**
+- Name: `PUBLIC_FORMSPREE_ENDPOINT`
 
 ### 8. Footer
 - File: src/components/Footer.tsx

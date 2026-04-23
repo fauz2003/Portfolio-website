@@ -17,18 +17,29 @@ export default function ContactForm() {
     email: '',
     message: '',
   });
+  const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT;
+  const hasEndpoint = Boolean(formEndpoint);
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (!hasEndpoint) {
+      setFormStatus('error');
+      return;
+    }
+
     setFormStatus('loading');
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch(formEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
 
@@ -100,7 +111,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     required
                     className={inputClass}
-                    placeholder="Jane Doe"
+                    placeholder="Your name or company name"
                   />
                 </div>
 
@@ -137,17 +148,25 @@ export default function ContactForm() {
                 </div>
 
                 {formStatus === 'error' && (
-                  <p className="text-sm text-red-400/90">Something went wrong. Please try again.</p>
+                  <p className="text-sm text-red-400/90">
+                    {hasEndpoint
+                      ? 'Something went wrong. Please try again.'
+                      : 'Form is not configured. Add PUBLIC_FORMSPREE_ENDPOINT to your environment.'}
+                  </p>
                 )}
 
                 <motion.button
                   type="submit"
-                  disabled={formStatus === 'loading'}
+                  disabled={formStatus === 'loading' || !hasEndpoint}
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                   className="w-full rounded-full bg-linear-to-r from-accent-primary to-sky-400 py-4 text-sm font-semibold text-dark-950 shadow-glow-sm transition hover:shadow-glow-md disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {formStatus === 'loading' ? 'Sending…' : 'Send message'}
+                  {formStatus === 'loading'
+                    ? 'Sending...'
+                    : hasEndpoint
+                      ? 'Send message'
+                      : 'Configure form endpoint'}
                 </motion.button>
               </form>
             </motion.div>
