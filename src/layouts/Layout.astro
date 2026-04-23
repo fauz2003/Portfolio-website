@@ -6,6 +6,8 @@ interface Props {
 	description?: string;
 }
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const { 
 	title = 'Fauz Ahmed - Software Engineer | Custom Software & Web Development',
 	description = 'Freelance software engineer specializing in custom software development, web platforms, rapid MVPs, and no-code solutions. Building reliable digital products that drive business results.'
@@ -25,8 +27,8 @@ const nav = [
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+		<link rel="icon" href={`${baseUrl}favicon.ico`} />
 		<meta name="generator" content={Astro.generator} />
 		
 		<title>{title}</title>

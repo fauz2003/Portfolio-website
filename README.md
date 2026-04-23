@@ -104,11 +104,18 @@ Build the project:
 pnpm build
 ```
 
-Deploy the dist/ folder to:
-- Vercel (recommended)
-- Netlify
-- GitHub Pages
-- Any static hosting service
+GitHub Pages is already wired up through `.github/workflows/deploy.yml`. Every push to `main` builds the site and publishes the generated `dist/` folder to GitHub Pages.
+
+One-time setup in the GitHub repository settings:
+1. Go to **Settings > Pages**.
+2. Set **Source** to **GitHub Actions**.
+
+If you want to build locally using the same Pages entry point, run:
+```bash
+pnpm run build:pages
+```
+
+The project still deploys cleanly to any static host by serving `dist/`.
 
 ##  Performance Strategy
 

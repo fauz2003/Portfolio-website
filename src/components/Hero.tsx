@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 
 export default function Hero() {
+  const profileImage = `${import.meta.env.BASE_URL}profile.png`;
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 pt-28">
       <div className="pointer-events-none absolute inset-0">
@@ -92,7 +94,7 @@ export default function Hero() {
           <div className="surface-glass relative overflow-hidden rounded-3xl p-1">
             <div className="relative aspect-square overflow-hidden rounded-[1.35rem] bg-linear-to-br from-dark-800 to-dark-950 ring-1 ring-white/10">
               <img 
-                src="/profile.png" 
+                src={profileImage} 
                 alt="Fauz Ahmed" 
                 className="h-full w-full object-cover"
               />
