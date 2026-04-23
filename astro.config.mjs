@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 
 const repositoryName = 'portfolio-website';
-const base = `/${repositoryName}`;
+const isProduction = process.env.NODE_ENV === 'production';
+const base = isProduction ? `/${repositoryName}/` : '/';
 
 // https://astro.build/config
 export default defineConfig({

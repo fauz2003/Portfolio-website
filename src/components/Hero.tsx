@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 
 export default function Hero() {
-  const profileImage = `${import.meta.env.BASE_URL}profile.png`;
+  const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+  const profileImage = `${baseUrl}profile.png`;
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 pt-28">
