@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 import react from '@astrojs/react';
 
-const repositoryName = 'portfolio-website';
+const repositoryName = 'Portfolio-website';
 const isProduction = process.env.NODE_ENV === 'production';
 const base = isProduction ? `/${repositoryName}/` : '/';
 
