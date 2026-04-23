@@ -9,7 +9,7 @@ const capabilities = [
   { title: 'Mobile Apps', description: 'Cross-platform experiences with native-quality polish.' },
   { title: 'Rapid MVPs', description: 'Fast validation loops from idea to market.' },
   { title: 'Internal Tools', description: 'Workflow automation that saves teams real time.' },
-  { title: 'No-Code', description: 'When velocity beats custom code — used strategically.' },
+  { title: 'No-Code', description: 'When velocity beats custom code - used strategically.' },
 ];
 
 export default function Capabilities() {

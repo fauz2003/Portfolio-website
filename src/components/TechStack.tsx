@@ -11,10 +11,14 @@ const technologies = [
   'MongoDB',
   'AWS',
   'Docker',
-  'Next.js',
+  'Nest.js',
   'GraphQL',
   'Redis',
   'Firebase',
+  'Supabase',
+  'Kubernetes',
+  'FlutterFlow',
+  'Webflow',
 ];
 
 export default function TechStack() {

@@ -102,13 +102,13 @@ const nav = [
 
 				let raf = 0;
 				const onScroll = () => {
-					const offset = header.getBoundingClientRect().height + 16;
+					const headerHeight = header.getBoundingClientRect().height;
 					const scrollY = window.scrollY || window.pageYOffset || 0;
-					const cursor = scrollY + offset;
+					const cursor = scrollY + headerHeight + 24;
 
 					let active = sections[0].id;
 					for (const section of sections) {
-						const top = section.getBoundingClientRect().top + scrollY;
+						const top = section.offsetTop;
 						if (top <= cursor) active = section.id;
 					}
 					setActive(active);

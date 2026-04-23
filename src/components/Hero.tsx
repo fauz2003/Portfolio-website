@@ -54,7 +54,7 @@ export default function Hero() {
             className="mt-6 max-w-lg text-base leading-relaxed text-zinc-500 sm:text-lg"
           >
             Transforming complex challenges into elegant solutions that drive measurable business
-            outcomes — from architecture to launch.
+            outcomes - from architecture to launch.
           </motion.p>
 
           <motion.div
@@ -91,14 +91,11 @@ export default function Hero() {
           <div className="absolute -inset-4 rounded-[2rem] bg-linear-to-br from-accent-primary/30 via-accent-secondary/20 to-transparent opacity-60 blur-2xl" />
           <div className="surface-glass relative overflow-hidden rounded-3xl p-1">
             <div className="relative aspect-square overflow-hidden rounded-[1.35rem] bg-linear-to-br from-dark-800 to-dark-950 ring-1 ring-white/10">
-              <div className="absolute inset-0 bg-linear-to-t from-dark-950/90 via-transparent to-transparent" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-5xl shadow-inner">
-                  👤
-                </div>
-                <p className="font-display text-sm font-medium text-zinc-300">Add your portrait</p>
-                <p className="mt-2 font-mono text-[11px] text-zinc-600">public/profile.png</p>
-              </div>
+              <img 
+                src="/profile.png" 
+                alt="Fauz Ahmed" 
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
           <div className="mt-6 flex justify-center gap-8 text-center font-mono text-[10px] uppercase tracking-widest text-zinc-600">

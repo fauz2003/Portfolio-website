@@ -11,8 +11,8 @@ import Footer from '../components/Footer';
 ---
 
 <Layout>
-	<!-- Hero Section - Load immediately for first paint -->
-	<Hero client:load />
+	<!-- Hero Section - Load when visible -->
+	<Hero client:visible />
 
 	<!-- About Section - Visible on scroll -->
 	<About client:visible />
