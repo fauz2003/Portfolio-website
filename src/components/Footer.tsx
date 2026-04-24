@@ -25,7 +25,7 @@ export default function Footer() {
           className="flex flex-wrap gap-x-10 gap-y-3"
         >
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/fauz2003"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-zinc-500 transition hover:text-white"
@@ -33,14 +33,14 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/fauz-ahmed/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-zinc-500 transition hover:text-white"
           >
             LinkedIn
           </a>
-          <a href="mailto:you@example.com" className="text-sm text-zinc-500 transition hover:text-white">
+          <a href="mailto:fauzahmed2@gmail.com" className="text-sm text-zinc-500 transition hover:text-white">
             Email
           </a>
         </motion.div>
