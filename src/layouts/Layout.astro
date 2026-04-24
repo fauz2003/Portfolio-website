@@ -52,13 +52,13 @@ const nav = [
 				<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
 					Fauz Ahmed
 				</a>
-				<ul class="flex items-center justify-center gap-2 overflow-x-auto whitespace-nowrap">
+				<ul class="flex items-center justify-center gap-2 py-1 overflow-x-auto whitespace-nowrap">
 					{nav.map((item) => (
 						<li class="shrink-0">
 							<a
 								href={item.href}
 								data-nav-link
-								class="rounded-full border border-transparent px-3.5 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
+								class="inline-flex items-center rounded-full border border-transparent px-3.5 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
 							>
 								{item.label}
 							</a>
