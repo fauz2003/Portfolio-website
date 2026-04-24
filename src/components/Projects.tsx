@@ -6,20 +6,20 @@ import SectionHeader from './SectionHeader';
 const projects = [
   {
     id: 1,
-    title: 'Project One',
-    category: 'Web Platform',
-    year: '2025',
+    title: 'FitFlex',
+    category: 'AI-powered Fitness App',
+    year: '2024',
   },
   {
     id: 2,
-    title: 'Project Two',
-    category: 'Mobile App',
+    title: 'Manufacturing Intelligence Platform',
+    category: 'Custom Software Solution',
     year: '2025',
   },
   {
     id: 3,
-    title: 'Project Three',
-    category: 'Backend System',
+    title: 'HackScan',
+    category: 'Intelligent Vulnerability Scanner',
     year: '2024',
   },
 ];
@@ -41,7 +41,6 @@ export default function Projects() {
           <SectionHeader
             eyebrow="Work"
             title="Selected projects"
-            subtitle="A snapshot of recent builds — swap in case studies, links, and imagery as you ship."
             isInView={isInView}
           />
 
@@ -82,22 +81,11 @@ export default function Projects() {
                   </h3>
                   <div className="flex items-center justify-between gap-6 md:col-span-3 md:justify-end">
                     <span className="text-sm text-zinc-500">{project.year}</span>
-                    <motion.span
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-lg text-zinc-400 transition group-hover:border-accent-primary/50 group-hover:bg-accent-primary/10 group-hover:text-accent-primary"
-                      whileHover={{ scale: 1.08 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                    >
-                      →
-                    </motion.span>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          <p className="mt-8 font-mono text-[11px] text-zinc-600">
-            Tip: edit the project list in <span className="text-zinc-500">src/components/Projects.tsx</span>
-          </p>
         </motion.div>
       </div>
     </section>
