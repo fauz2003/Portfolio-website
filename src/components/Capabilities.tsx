@@ -36,16 +36,33 @@ export default function Capabilities() {
             isInView={isInView}
           />
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 lg:gap-5">
             {capabilities.map((item, index) => (
               <motion.article
                 key={item.title}
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
                 transition={{ delay: 0.15 + index * 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="surface-glass surface-glass-hover group relative rounded-2xl p-7"
+                className="surface-glass surface-glass-hover group relative min-w-[82%] snap-start rounded-2xl p-7 sm:min-w-0"
               >
-                <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] font-mono text-xs font-semibold text-accent-primary transition group-hover:border-accent-primary/30 group-hover:bg-accent-primary/10">
+                <div
+                  className={`pointer-events-none absolute inset-x-7 top-0 h-px ${
+                    index % 3 === 0
+                      ? 'bg-linear-to-r from-accent-primary/60 to-transparent'
+                      : index % 3 === 1
+                        ? 'bg-linear-to-r from-accent-secondary/60 to-transparent'
+                        : 'bg-linear-to-r from-accent-tertiary/60 to-transparent'
+                  }`}
+                />
+                <div
+                  className={`mb-5 flex h-10 w-10 items-center justify-center rounded-xl border bg-white/[0.03] font-mono text-xs font-semibold transition ${
+                    index % 3 === 0
+                      ? 'border-accent-primary/25 text-accent-primary group-hover:border-accent-primary/40 group-hover:bg-accent-primary/10'
+                      : index % 3 === 1
+                        ? 'border-accent-secondary/25 text-accent-secondary group-hover:border-accent-secondary/40 group-hover:bg-accent-secondary/10'
+                        : 'border-accent-tertiary/25 text-accent-tertiary group-hover:border-accent-tertiary/40 group-hover:bg-accent-tertiary/10'
+                  }`}
+                >
                   {String(index + 1).padStart(2, '0')}
                 </div>
                 <h3 className="font-display text-lg font-semibold text-white transition group-hover:text-accent-primary">

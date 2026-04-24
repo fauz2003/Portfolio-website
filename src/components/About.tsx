@@ -55,17 +55,33 @@ export default function About() {
             </h2>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-3 md:gap-8">
+          <div className="relative grid gap-5 before:absolute before:bottom-6 before:left-5 before:top-6 before:w-px before:bg-linear-to-b before:from-accent-primary/45 before:to-transparent md:grid-cols-3 md:gap-8 md:before:hidden">
             {steps.map((step, index) => (
               <motion.div
                 key={step.n}
                 initial={{ opacity: 0, y: 28 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
                 transition={{ delay: 0.2 + index * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className="surface-glass surface-glass-hover group relative overflow-hidden rounded-2xl p-8"
+                className="surface-glass surface-glass-hover group relative overflow-hidden rounded-2xl p-7 pl-10 sm:p-8 sm:pl-11 md:p-8 md:pl-8"
               >
-                <div className="absolute -right-6 -top-6 h-32 w-32 rounded-full bg-accent-primary/5 blur-2xl transition group-hover:bg-accent-primary/10" />
-                <p className="font-display text-4xl font-light tabular-nums text-white/10 transition group-hover:text-accent-primary/30">
+                <span className="absolute left-5 top-8 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent-primary shadow-[0_0_0_4px_rgba(3,3,8,0.95)] md:hidden" />
+                <span
+                  className={`absolute bottom-7 left-0 top-7 w-px md:hidden ${
+                    index % 2 === 0 ? 'bg-accent-primary/35' : 'bg-accent-secondary/35'
+                  }`}
+                />
+                <div
+                  className={`absolute -right-6 -top-6 h-32 w-32 rounded-full blur-2xl transition ${
+                    index % 2 === 0
+                      ? 'bg-accent-primary/5 group-hover:bg-accent-primary/10'
+                      : 'bg-accent-secondary/8 group-hover:bg-accent-secondary/15'
+                  }`}
+                />
+                <p
+                  className={`font-display text-4xl font-light tabular-nums text-white/10 transition ${
+                    index % 2 === 0 ? 'group-hover:text-accent-primary/30' : 'group-hover:text-accent-secondary/35'
+                  }`}
+                >
                   {step.n}
                 </p>
                 <h3 className="mt-4 font-display text-lg font-semibold text-white">{step.title}</h3>

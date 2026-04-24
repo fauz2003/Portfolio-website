@@ -20,6 +20,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col items-center text-center md:items-start md:text-left"
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -56,7 +57,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="mt-6 max-w-lg text-base leading-relaxed text-zinc-500 sm:text-lg"
+            className="mt-6 max-w-lg text-base leading-relaxed text-zinc-500 sm:text-lg md:mx-0"
           >
             Transforming complex challenges into elegant solutions that drive measurable business
             outcomes - from architecture to launch.
@@ -66,7 +67,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.8 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start"
           >
             <motion.a
               href="#contact"

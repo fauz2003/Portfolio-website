@@ -62,17 +62,44 @@ export default function Services() {
                     duration: 0.55,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="surface-glass surface-glass-hover group relative overflow-hidden rounded-2xl p-8"
+                  className="surface-glass surface-glass-hover group relative overflow-hidden rounded-2xl p-6 sm:p-8"
                 >
-                  <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full border border-white/[0.04] transition group-hover:border-accent-primary/20" />
-                  <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.25em] text-accent-primary/80">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <h3 className="mt-5 font-display text-xl font-semibold text-white transition group-hover:text-accent-primary">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-500">{service.description}</p>
-                  <div className="mt-8 h-px w-12 bg-linear-to-r from-accent-primary/50 to-transparent transition group-hover:w-full" />
+                  <div
+                    className={`pointer-events-none absolute inset-x-0 top-0 h-px ${
+                      index % 2 === 0
+                        ? 'bg-linear-to-r from-accent-primary/60 to-transparent'
+                        : 'bg-linear-to-l from-accent-secondary/60 to-transparent'
+                    }`}
+                  />
+                  <div
+                    className={`absolute -right-8 -top-8 h-24 w-24 rounded-full border transition ${
+                      index % 2 === 0 ? 'border-accent-primary/18' : 'border-accent-secondary/18'
+                    } group-hover:border-accent-primary/30`}
+                  />
+                  <div className="flex items-start gap-4">
+                    <p
+                      className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border bg-white/[0.03] font-mono text-[10px] font-semibold uppercase tracking-[0.2em] ${
+                        index % 2 === 0
+                          ? 'border-accent-primary/25 text-accent-primary/80'
+                          : 'border-accent-secondary/25 text-accent-secondary/80'
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </p>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-xl font-semibold text-white transition group-hover:text-accent-primary">
+                        {service.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-zinc-500">{service.description}</p>
+                      <div
+                        className={`mt-6 h-px w-12 transition group-hover:w-full ${
+                          index % 2 === 0
+                            ? 'bg-linear-to-r from-accent-primary/50 to-transparent'
+                            : 'bg-linear-to-r from-accent-secondary/50 to-transparent'
+                        }`}
+                      />
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>

@@ -48,29 +48,65 @@ const nav = [
 		<div class="noise-overlay" aria-hidden="true"></div>
 
 		<header class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-dark-950/75 py-0 backdrop-blur-xl backdrop-saturate-150 sm:px-8 lg:px-12">
-			<nav class="mx-auto grid w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-6 py-4" aria-label="Primary">
-				<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
-					Fauz Ahmed
-				</a>
-				<ul class="flex items-center justify-center gap-2 py-1 overflow-x-auto whitespace-nowrap">
-					{nav.map((item) => (
-						<li class="shrink-0">
-							<a
-								href={item.href}
-								data-nav-link
-								class="inline-flex items-center rounded-full border border-transparent px-3.5 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
-							>
-								{item.label}
-							</a>
-						</li>
-					))}
-				</ul>
-				<a
-					href="#contact"
-					class="rounded-full border border-accent-primary/40 bg-accent-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-primary transition hover:border-accent-primary hover:bg-accent-primary/20"
-				>
-					Hire
-				</a>
+			<nav class="mx-auto w-full max-w-7xl" aria-label="Primary">
+				<div class="flex items-center justify-between px-4 py-4 md:hidden">
+					<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
+						Fauz Ahmed
+					</a>
+					<button
+						type="button"
+						data-mobile-nav-toggle
+						aria-controls="mobile-nav-panel"
+						aria-expanded="false"
+						aria-label="Open menu"
+						class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.03] text-zinc-200 transition hover:border-accent-primary/40 hover:text-white"
+					>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4" aria-hidden="true">
+							<path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"></path>
+						</svg>
+					</button>
+				</div>
+
+				<div id="mobile-nav-panel" data-mobile-nav-panel class="hidden border-t border-white/[0.08] px-4 pb-4 md:hidden">
+					<ul class="flex flex-col gap-1 pt-3">
+						{nav.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									data-nav-link
+									class="flex items-center rounded-full border border-transparent px-3.5 py-2 text-[11px] font-medium uppercase tracking-wider text-zinc-400 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
+								>
+									{item.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div class="hidden md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-6 md:py-4">
+					<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
+						Fauz Ahmed
+					</a>
+					<ul class="flex items-center justify-center gap-2 py-1 whitespace-nowrap">
+						{nav.map((item) => (
+							<li class="shrink-0">
+								<a
+									href={item.href}
+									data-nav-link
+									class="inline-flex items-center rounded-full border border-transparent px-3.5 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
+								>
+									{item.label}
+								</a>
+							</li>
+						))}
+					</ul>
+					<a
+						href="#contact"
+						class="rounded-full border border-accent-primary/40 bg-accent-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-primary transition hover:border-accent-primary hover:bg-accent-primary/20"
+					>
+						Hire
+					</a>
+				</div>
 			</nav>
 		</header>
 
@@ -82,15 +118,39 @@ const nav = [
 			(() => {
 				const header = document.querySelector('header');
 				const links = Array.from(document.querySelectorAll('[data-nav-link]'));
+				const mobileToggle = document.querySelector('[data-mobile-nav-toggle]');
+				const mobilePanel = document.querySelector('[data-mobile-nav-panel]');
 				if (!header || links.length === 0) return;
 
+				if (mobileToggle instanceof HTMLButtonElement && mobilePanel instanceof HTMLElement) {
+					const setMenuOpen = (isOpen) => {
+						mobilePanel.classList.toggle('hidden', !isOpen);
+						mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+						mobileToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+					};
+
+					mobileToggle.addEventListener('click', () => {
+						const isOpen = mobilePanel.classList.contains('hidden');
+						setMenuOpen(isOpen);
+					});
+
+					for (const a of links) {
+						a.addEventListener('click', () => setMenuOpen(false));
+					}
+
+					window.addEventListener('resize', () => {
+						if (window.innerWidth >= 768) setMenuOpen(false);
+					});
+				}
+
 				const getSectionIdFromHref = (href) => (href || '').replace('#', '');
-				const sections = links
-					.map((a) => {
-						const id = getSectionIdFromHref(a.getAttribute('href'));
-						return document.getElementById(id);
-					})
-					.filter(Boolean);
+				const sectionsById = new Map();
+				for (const a of links) {
+					const id = getSectionIdFromHref(a.getAttribute('href'));
+					const section = document.getElementById(id);
+					if (section && !sectionsById.has(id)) sectionsById.set(id, section);
+				}
+				const sections = Array.from(sectionsById.values());
 
 				if (sections.length === 0) return;
 
