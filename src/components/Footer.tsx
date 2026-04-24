@@ -40,7 +40,12 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <a href="mailto:fauzahmed2@gmail.com" className="text-sm text-zinc-500 transition hover:text-white">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=fauzahmed2@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-zinc-500 transition hover:text-white"
+          >
             Email
           </a>
         </motion.div>
