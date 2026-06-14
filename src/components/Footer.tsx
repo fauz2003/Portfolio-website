@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+  const resumeUrl = `${baseUrl}FauzAhmed.pdf`;
 
   return (
     <footer className="relative border-t border-white/[0.06] bg-dark-950/80 py-8 lg:py-12 px-5 sm:px-8 lg:px-12 backdrop-blur-sm">
@@ -14,7 +18,7 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
         >
           <p className="font-display text-lg font-semibold text-white">Fauz Ahmed</p>
-          <p className="mt-1 text-sm text-zinc-500">Software engineer · Freelance & contracts</p>
+          <p className="mt-1 text-sm text-zinc-500">Polyglot Software Engineer · Open to roles & freelance</p>
         </motion.div>
 
         <motion.div
@@ -24,6 +28,17 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.08 }}
           className="flex flex-wrap gap-x-10 gap-y-3"
         >
+          <a
+            href={resumeUrl}
+            download
+            className="inline-flex items-center gap-1.5 text-sm text-zinc-300 transition hover:text-accent-primary"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-3.5 w-3.5" aria-hidden>
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Resume
+          </a>
           <a
             href="https://github.com/fauz2003"
             target="_blank"

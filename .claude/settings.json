@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(cp dist/_astro/index.CID-riXI.css dist/_astro/index.CID-riXI.css.bak)",
+      "Bash(printf '\\\\n/*VERIFY*/[style]{opacity:1 !important;transform:none !important;}\\\\n')",
+      "Bash(rm -f dist/_astro/*.css.bak)",
+      "Bash(pkill -f \"astro preview\")",
+      "Bash(rm -f src/pages/verify.astro src/pages/verify2.astro preview.log preview2.log build2.log)",
+      "Bash(rm -rf .shots)",
+      "Bash(xxd)"
+    ]
+  }
+}

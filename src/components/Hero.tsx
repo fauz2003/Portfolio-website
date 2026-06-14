@@ -5,6 +5,7 @@ export default function Hero() {
     ? import.meta.env.BASE_URL
     : `${import.meta.env.BASE_URL}/`;
   const profileImage = `${baseUrl}profile.png`;
+  const resumeUrl = `${baseUrl}FauzAhmed.pdf`;
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 pt-28">
@@ -32,7 +33,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-primary/60 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-primary" />
             </span>
-            Available for projects
+            Available for work
           </motion.div>
 
           <motion.h1
@@ -50,7 +51,7 @@ export default function Hero() {
             transition={{ delay: 0.35, duration: 0.8 }}
             className="mt-6 font-display text-2xl font-light text-zinc-300 sm:text-3xl lg:text-[2rem] lg:leading-snug"
           >
-            Building reliable digital products
+            Polyglot Software Engineer
           </motion.p>
 
           <motion.p
@@ -59,31 +60,47 @@ export default function Hero() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-6 max-w-lg text-base leading-relaxed text-zinc-500 sm:text-lg md:mx-0"
           >
-            Transforming complex challenges into elegant solutions that drive measurable business
-            outcomes - from architecture to launch.
+            I build scalable web &amp; mobile products end-to-end - turning complex challenges into
+            elegant solutions, from architecture and APIs to launch.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.8 }}
-            className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start"
+            className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:justify-start"
           >
             <motion.a
-              href="#contact"
+              href={resumeUrl}
+              download
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-accent-primary to-sky-400 px-8 py-3.5 text-sm font-semibold text-dark-950 shadow-glow-md transition hover:shadow-glow-lg"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-accent-primary to-sky-400 px-7 py-3.5 text-sm font-semibold text-dark-950 shadow-glow-md transition hover:shadow-glow-lg sm:px-8"
             >
-              Start a project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4" aria-hidden>
+                <path d="M12 3v12m0 0 4-4m-4 4-4-4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Download resume
             </motion.a>
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-8 py-3.5 text-sm font-medium text-zinc-300 transition hover:border-accent-primary/40 hover:text-white"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-7 py-3.5 text-sm font-medium text-zinc-300 transition hover:border-accent-primary/40 hover:text-white sm:px-8"
             >
               View work
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group inline-flex items-center justify-center gap-1.5 rounded-full px-3 py-3.5 text-sm font-medium text-zinc-400 transition hover:text-white"
+            >
+              Start a project
+              <span className="transition group-hover:translate-x-0.5" aria-hidden>
+                →
+              </span>
             </motion.a>
           </motion.div>
         </motion.div>
@@ -104,10 +121,10 @@ export default function Hero() {
               />
             </div>
           </div>
-          <div className="mt-6 flex justify-center gap-8 text-center font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+          <div className="mt-6 flex flex-wrap justify-center gap-6 text-center font-mono text-[10px] uppercase tracking-widest text-zinc-600 sm:gap-8">
             <div>
-              <p className="text-sm font-semibold text-white">End-to-end</p>
-              <p>Scope</p>
+              <p className="text-sm font-semibold text-white">Full-stack</p>
+              <p>Web · Mobile · IoT</p>
             </div>
             <div className="h-8 w-px bg-white/10" aria-hidden />
             <div>

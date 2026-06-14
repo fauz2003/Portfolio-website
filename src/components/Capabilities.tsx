@@ -32,7 +32,7 @@ export default function Capabilities() {
           <SectionHeader
             eyebrow="Capabilities"
             title="What I build"
-            subtitle="End-to-end ownership across the stack — from first sketch to production metrics."
+            subtitle="End-to-end ownership across the stack - from first sketch to production metrics."
             isInView={isInView}
           />
 

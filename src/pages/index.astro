@@ -2,9 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero';
 import About from '../components/About';
+import Experience from '../components/Experience';
 import Capabilities from '../components/Capabilities';
 import TechStack from '../components/TechStack';
 import Projects from '../components/Projects';
+import Credentials from '../components/Credentials';
 import Services from '../components/Services';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
@@ -17,6 +19,9 @@ import Footer from '../components/Footer';
 	<!-- About Section - Visible on scroll -->
 	<About client:visible />
 
+	<!-- Experience Section - Work history timeline -->
+	<Experience client:visible />
+
 	<!-- Capabilities Section -->
 	<Capabilities client:visible />
 
@@ -25,6 +30,9 @@ import Footer from '../components/Footer';
 
 	<!-- Projects Section -->
 	<Projects client:visible />
+
+	<!-- Credentials Section - Education & certifications -->
+	<Credentials client:visible />
 
 	<!-- Services Section -->
 	<Services client:visible />

@@ -9,16 +9,19 @@ interface Props {
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 	? import.meta.env.BASE_URL
 	: `${import.meta.env.BASE_URL}/`;
+const resumeUrl = `${baseUrl}FauzAhmed.pdf`;
 
-const { 
-	title = 'Fauz Ahmed - Software Engineer | Custom Software & Web Development',
-	description = 'Freelance software engineer specializing in custom software development, web platforms, rapid MVPs, and no-code solutions. Building reliable digital products that drive business results.'
+const {
+	title = 'Fauz Ahmed - Polyglot Software Engineer | Full-Stack Web & Mobile Development',
+	description = 'Polyglot software engineer building scalable web and mobile products end-to-end - from architecture and APIs to launch. Experience across full-stack, IoT platforms, and rapid MVPs.'
 } = Astro.props;
 
 const nav = [
 	{ href: '#about', label: 'Approach' },
+	{ href: '#experience', label: 'Experience' },
 	{ href: '#capabilities', label: 'Capabilities' },
 	{ href: '#projects', label: 'Work' },
+	{ href: '#credentials', label: 'Credentials' },
 	{ href: '#services', label: 'Services' },
 	{ href: '#contact', label: 'Contact' },
 ];
@@ -49,7 +52,7 @@ const nav = [
 
 		<header class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-dark-950/75 py-0 backdrop-blur-xl backdrop-saturate-150 sm:px-8 lg:px-12">
 			<nav class="mx-auto w-full max-w-7xl" aria-label="Primary">
-				<div class="flex items-center justify-between px-4 py-4 md:hidden">
+				<div class="flex items-center justify-between px-4 py-4 lg:hidden">
 					<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
 						Fauz Ahmed
 					</a>
@@ -67,7 +70,7 @@ const nav = [
 					</button>
 				</div>
 
-				<div id="mobile-nav-panel" data-mobile-nav-panel class="hidden border-t border-white/[0.08] px-4 pb-4 md:hidden">
+				<div id="mobile-nav-panel" data-mobile-nav-panel class="hidden border-t border-white/[0.08] px-4 pb-4 lg:hidden">
 					<ul class="flex flex-col gap-1 pt-3">
 						{nav.map((item) => (
 							<li>
@@ -81,31 +84,64 @@ const nav = [
 							</li>
 						))}
 					</ul>
+					<div class="mt-3 grid grid-cols-2 gap-2 border-t border-white/[0.08] pt-3">
+						<a
+							href={resumeUrl}
+							download
+							class="inline-flex items-center justify-center gap-1.5 rounded-full bg-linear-to-r from-accent-primary to-sky-400 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-dark-950 transition hover:shadow-glow-md"
+						>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-3.5 w-3.5" aria-hidden="true">
+								<path d="M12 3v12m0 0 4-4m-4 4-4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+								<path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+							Resume
+						</a>
+						<a
+							href="#contact"
+							data-nav-link
+							class="inline-flex items-center justify-center rounded-full border border-accent-primary/40 bg-accent-primary/10 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider text-accent-primary transition hover:border-accent-primary hover:bg-accent-primary/20"
+						>
+							Hire
+						</a>
+					</div>
 				</div>
 
-				<div class="hidden md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-6 md:py-4">
+				<div class="hidden lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-4 lg:py-4">
 					<a href="#" class="font-display text-sm font-semibold tracking-tight text-white transition hover:text-accent-primary">
 						Fauz Ahmed
 					</a>
-					<ul class="flex items-center justify-center gap-2 py-1 whitespace-nowrap">
+					<ul class="flex items-center justify-center gap-1 py-1 whitespace-nowrap">
 						{nav.map((item) => (
 							<li class="shrink-0">
 								<a
 									href={item.href}
 									data-nav-link
-									class="inline-flex items-center rounded-full border border-transparent px-3.5 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
+									class="inline-flex items-center rounded-full border border-transparent px-3 py-1.5 text-[11px] font-medium uppercase leading-normal tracking-wider text-zinc-500 transition hover:border-accent-primary/30 hover:bg-white/[0.05] hover:text-white"
 								>
 									{item.label}
 								</a>
 							</li>
 						))}
 					</ul>
-					<a
-						href="#contact"
-						class="rounded-full border border-accent-primary/40 bg-accent-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-primary transition hover:border-accent-primary hover:bg-accent-primary/20"
-					>
-						Hire
-					</a>
+					<div class="flex items-center gap-2.5">
+						<a
+							href={resumeUrl}
+							download
+							class="hidden items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zinc-300 transition hover:border-accent-primary/40 hover:text-white xl:inline-flex"
+						>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-3.5 w-3.5" aria-hidden="true">
+								<path d="M12 3v12m0 0 4-4m-4 4-4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+								<path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2" stroke-linecap="round" stroke-linejoin="round"></path>
+							</svg>
+							Resume
+						</a>
+						<a
+							href="#contact"
+							class="rounded-full border border-accent-primary/40 bg-accent-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent-primary transition hover:border-accent-primary hover:bg-accent-primary/20"
+						>
+							Hire
+						</a>
+					</div>
 				</div>
 			</nav>
 		</header>
@@ -139,7 +175,7 @@ const nav = [
 					}
 
 					window.addEventListener('resize', () => {
-						if (window.innerWidth >= 768) setMenuOpen(false);
+						if (window.innerWidth >= 1024) setMenuOpen(false);
 					});
 				}
 

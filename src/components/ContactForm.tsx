@@ -80,7 +80,7 @@ export default function ContactForm() {
           <SectionHeader
             eyebrow="Contact"
             title="Let's talk"
-            subtitle="Share a bit about your timeline, stack, and goals — I typically reply within one business day."
+            subtitle="Share a bit about your timeline, stack, and goals - I typically reply within one business day."
             isInView={isInView}
           />
 
