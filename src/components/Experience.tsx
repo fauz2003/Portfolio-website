@@ -17,6 +17,21 @@ type Role = {
 
 const experiences: Role[] = [
   {
+    role: 'Founder',
+    company: 'Numen',
+    location: 'Remote',
+    period: 'Apr 2026 - Present',
+    current: true,
+    summary:
+      'Founder of a software studio helping founders and teams ship products fast - from MVPs to AI agents and SaaS.',
+    points: [
+      'Build MVPs for non-technical founders, taking ideas from concept to launch.',
+      'Design and ship AI agents and workflow automations.',
+      'Develop SaaS products and custom software end-to-end.',
+    ],
+    stack: ['FlutterFlow', 'React', 'TypeScript', 'Supabase', 'Node.js'],
+  },
+  {
     role: 'Full-Stack Engineer',
     type: 'Part-time',
     company: 'Two.Zero',

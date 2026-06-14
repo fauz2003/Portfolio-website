@@ -12,7 +12,7 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Manufacturing Intelligence Platform',
+    title: 'Manufacturing Automation Platform',
     category: 'Custom Software Solution',
     year: '2025',
   },

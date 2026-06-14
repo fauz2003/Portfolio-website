@@ -42,16 +42,19 @@ const certifications = [
   { name: 'AWS Academy Web Application Builder', issuer: 'Amazon Web Services', tone: 'cyan' as const },
   { name: 'HCIA - Huawei Cloud Services v3.0', issuer: 'Huawei', tone: 'pink' as const },
   { name: 'HCIA - Huawei Cloud Computing v3.0', issuer: 'Huawei', tone: 'pink' as const },
+  { name: 'FlutterFlow Certified', issuer: 'FlutterFlow University', tone: 'violet' as const },
 ];
 
 const tones = {
   gold: {
     iconWrap: 'border-amber-300/30 bg-amber-300/10 text-amber-300',
+    eyebrow: 'text-amber-300/80',
     glow: 'bg-amber-300/10',
     line: 'from-amber-300/60',
   },
   violet: {
     iconWrap: 'border-accent-secondary/30 bg-accent-secondary/10 text-accent-secondary',
+    eyebrow: 'text-accent-secondary/80',
     glow: 'bg-accent-secondary/10',
     line: 'from-accent-secondary/60',
   },
@@ -136,7 +139,7 @@ export default function Credentials() {
           <SectionHeader
             eyebrow="Credentials"
             title="Education & certifications"
-            subtitle="A computer science foundation, recognised academic performance, and cloud certifications across AWS and Huawei."
+            subtitle="A computer science foundation, recognised academic performance, and certifications spanning AWS, Huawei, and FlutterFlow."
             isInView={isInView}
           />
 
